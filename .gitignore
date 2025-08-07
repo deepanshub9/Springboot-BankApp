@@ -26,6 +26,7 @@ Thumbs.db
 docker-compose.override.yml
 
 # AWS CLI and downloads
+aws/
 awscliv2.zip
 *.pem
 *.key
