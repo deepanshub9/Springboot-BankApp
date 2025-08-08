@@ -11,6 +11,7 @@ A comprehensive guide for deploying and managing the Spring Boot Banking Applica
 ## 🎯 Overview
 
 This Kubernetes setup provides a complete cloud-native deployment solution featuring:
+
 - **Container Orchestration**: Full Kubernetes deployment with high availability
 - **GitOps Workflow**: ArgoCD for continuous deployment
 - **Monitoring Stack**: Prometheus + Grafana for observability
@@ -19,9 +20,14 @@ This Kubernetes setup provides a complete cloud-native deployment solution featu
 - **Scalability**: Horizontal Pod Autoscaling (HPA)
 - **Storage**: Persistent volume management with AWS EBS
 
+<img width="1913" height="961" alt="Image" src="https://github.com/user-attachments/assets/959c2625-5f4f-4b3c-8002-4e279ddb32c9" />
+
+<img width="1913" height="874" alt="Image" src="https://github.com/user-attachments/assets/eedecfc1-d817-41fc-9ded-e68462aa1b08" />
+
 ## 🏗️ Architecture Overview
 
 ### Infrastructure Components
+
 - **EKS Cluster**: Managed Kubernetes on AWS
 - **Worker Nodes**: EC2 instances with auto-scaling groups
 - **Load Balancer**: AWS Application Load Balancer
@@ -29,6 +35,7 @@ This Kubernetes setup provides a complete cloud-native deployment solution featu
 - **Networking**: VPC with private/public subnets
 
 ### Application Stack
+
 - **Frontend/Backend**: Spring Boot Banking Application
 - **Database**: MySQL with persistent storage
 - **Reverse Proxy**: Nginx Ingress Controller
@@ -36,15 +43,21 @@ This Kubernetes setup provides a complete cloud-native deployment solution featu
 - **Service Discovery**: Kubernetes DNS
 
 ### Monitoring & Observability
+
 - **Metrics**: Prometheus for metrics collection
 - **Visualization**: Grafana dashboards
 - **Logging**: ELK stack integration (optional)
 - **Tracing**: Jaeger integration (optional)
 - **Health Checks**: Kubernetes probes + custom health endpoints
 
+<img width="1897" height="877" alt="Image" src="https://github.com/user-attachments/assets/ca7df4a7-f350-4737-8b18-bc224b258998" />
+
+<img width="1899" height="886" alt="Image" src="https://github.com/user-attachments/assets/0d4a4be0-068a-46aa-bf6e-d05b4e312de2" />
+
 ## 📋 Prerequisites
 
 ### Required Tools & Versions
+
 - **kubectl**: v1.33+ (Kubernetes CLI)
 - **helm**: v3.18+ (Package manager)
 - **aws-cli**: v2.0+ (AWS command line interface)
@@ -54,6 +67,7 @@ This Kubernetes setup provides a complete cloud-native deployment solution featu
 - **git**: Latest version
 
 ### AWS Requirements
+
 - **AWS Account**: With appropriate permissions
 - **IAM Roles**: EKS cluster and node group roles
 - **VPC**: Configured with public/private subnets
@@ -61,16 +75,22 @@ This Kubernetes setup provides a complete cloud-native deployment solution featu
 - **Route53**: For DNS management (optional)
 
 ### Local Environment
+
 - **Operating System**: Linux, macOS, or Windows with WSL2
 - **Memory**: Minimum 8GB RAM, Recommended 16GB+
 - **Storage**: At least 20GB free space
 - **Network**: Stable internet connection for cluster communication
+
+<img width="1908" height="885" alt="Image" src="https://github.com/user-attachments/assets/b1509ae7-e753-4db3-830c-319c7f32e323" />
+
+<img width="1915" height="1022" alt="Image" src="https://github.com/user-attachments/assets/e09c0614-c5fa-47f8-a268-d051f42af772" />
 
 ## 🚀 Initial Setup
 
 ### 1. Install Required Tools
 
 #### Install kubectl
+
 ```bash
 # Linux
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -84,6 +104,7 @@ kubectl version --client
 ```
 
 #### Install Helm
+
 ```bash
 # Linux/macOS
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -93,6 +114,7 @@ helm version
 ```
 
 #### Install AWS CLI
+
 ```bash
 # Linux
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -104,6 +126,7 @@ aws configure
 ```
 
 #### Install eksctl
+
 ```bash
 # Linux
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
@@ -116,6 +139,7 @@ eksctl version
 ### 2. AWS Configuration
 
 #### Configure AWS Credentials
+
 ```bash
 # Set up AWS credentials
 aws configure set aws_access_key_id YOUR_ACCESS_KEY
@@ -128,6 +152,7 @@ aws sts get-caller-identity
 ```
 
 #### Create IAM Roles (if not exists)
+
 ```bash
 # EKS Cluster Service Role
 aws iam create-role --role-name eksServiceRole \
@@ -142,7 +167,10 @@ aws iam create-role --role-name eksNodeGroupRole \
 
 ### Method 1: Using eksctl (Recommended)
 
-#### Create Cluster Configuration
+<img width="1896" height="872" alt="Image" src="https://github.com/user-attachments/assets/c37496cc-3981-4852-b059-adf8bebcf658" />
+
+<img width="1914" height="777" alt="Image" src="https://github.com/user-attachments/assets/456b5cf2-502b-40f7-b564-eed970595cb4" />
+
 ```yaml
 # cluster-config.yaml
 apiVersion: eksctl.io/v1alpha5
@@ -202,6 +230,7 @@ iam:
 ```
 
 #### Deploy EKS Cluster
+
 ```bash
 # Create cluster
 eksctl create cluster -f cluster-config.yaml
@@ -217,6 +246,7 @@ aws eks update-kubeconfig --region us-east-1 --name bankapp-cluster
 ### Method 2: Using Terraform
 
 #### Terraform Configuration
+
 ```bash
 # Initialize Terraform
 cd terraform/
@@ -237,6 +267,7 @@ aws eks update-kubeconfig --region us-east-1 --name bankapp-cluster
 ### 1. Install Essential Add-ons
 
 #### AWS Load Balancer Controller
+
 ```bash
 # Add EKS Helm repository
 helm repo add eks https://aws.github.io/eks-charts
@@ -251,6 +282,7 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 ```
 
 #### Metrics Server
+
 ```bash
 # Install metrics server
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
@@ -263,6 +295,7 @@ kubectl top nodes
 ### 2. Install Ingress Controller
 
 #### Nginx Ingress Controller
+
 ```bash
 # Add ingress-nginx repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -284,6 +317,7 @@ kubectl get service -n ingress-nginx
 ### 3. Install Cert-Manager
 
 #### SSL Certificate Management
+
 ```bash
 # Add cert-manager repository
 helm repo add jetstack https://charts.jetstack.io
@@ -303,6 +337,7 @@ kubectl get pods -n cert-manager
 ```
 
 #### Configure Let's Encrypt ClusterIssuer
+
 ```bash
 # Create Let's Encrypt ClusterIssuer
 kubectl apply -f - <<EOF
@@ -320,3 +355,4 @@ spec:
     - http01:
         ingress:
           class: nginx
+```
