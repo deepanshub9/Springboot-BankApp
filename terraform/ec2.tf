@@ -74,6 +74,8 @@ resource "aws_instance" "testinstance" {
     volume_type = "gp3"
   }
   
-
+  lifecycle {
+    ignore_changes = [instance_type]
+  }
 
 }
