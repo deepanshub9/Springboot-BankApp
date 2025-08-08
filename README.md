@@ -10,8 +10,8 @@ A comprehensive, secure banking web application built with Spring Boot, featurin
 
 - This is a multi-tier bank an application written in Java (Springboot).
 
-![Login diagram](<img width="1913" height="961" alt="Image" src="https://github.com/user-attachments/assets/959c2625-5f4f-4b3c-8002-4e279ddb32c9" />)
-![Transactions diagram](<img width="1913" height="874" alt="Image" src="https://github.com/user-attachments/assets/eedecfc1-d817-41fc-9ded-e68462aa1b08" />)
+![Login diagram]<img width="1913" height="961" alt="Image" src="https://github.com/user-attachments/assets/959c2625-5f4f-4b3c-8002-4e279ddb32c9" />
+![Transactions diagram]<img width="1913" height="874" alt="Image" src="https://github.com/user-attachments/assets/eedecfc1-d817-41fc-9ded-e68462aa1b08" />
 
 ## Tech stack used in this project:
 
