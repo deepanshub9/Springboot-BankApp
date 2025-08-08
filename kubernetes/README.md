@@ -167,8 +167,6 @@ aws iam create-role --role-name eksNodeGroupRole \
 
 ### Method 1: Using eksctl (Recommended)
 
-<img width="1896" height="872" alt="Image" src="https://github.com/user-attachments/assets/c37496cc-3981-4852-b059-adf8bebcf658" />
-
 <img width="1914" height="777" alt="Image" src="https://github.com/user-attachments/assets/456b5cf2-502b-40f7-b564-eed970595cb4" />
 
 ```yaml

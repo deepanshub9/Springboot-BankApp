@@ -10,8 +10,8 @@ A comprehensive, secure banking web application built with Spring Boot, featurin
 
 - This is a multi-tier bank an application written in Java (Springboot).
 
-![Login diagram]<img width="1913" height="961" alt="Image" src="https://github.com/user-attachments/assets/959c2625-5f4f-4b3c-8002-4e279ddb32c9" />
-![Transactions diagram]<img width="1913" height="874" alt="Image" src="https://github.com/user-attachments/assets/eedecfc1-d817-41fc-9ded-e68462aa1b08" />
+[Login diagram]<img width="1915" height="1022" alt="Image" src="https://github.com/user-attachments/assets/e09c0614-c5fa-47f8-a268-d051f42af772" />
+[Transactions diagram]<img width="1913" height="874" alt="Image" src="https://github.com/user-attachments/assets/eedecfc1-d817-41fc-9ded-e68462aa1b08" />
 
 ## Tech stack used in this project:
 
@@ -289,12 +289,6 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 - <b>Go to <mark> Manage Jenkins --> System</mark> and search for SonarQube installations:</b>
   ![image](https://github.com/user-attachments/assets/ae866185-cb2b-4e83-825b-a125ec97243a)
-
-#
-
-- <b>Now again, Go to <mark> Manage Jenkins --> System</mark> and search for Global Trusted Pipeline Libraries:</b
-  ![image](https://github.com/user-attachments/assets/874b2e03-49b9-4c26-9b0f-bd07ce70c0f1)
-  ![image](https://github.com/user-attachments/assets/1ca83b43-ce85-4970-941d-9a819ce4ecfd)
 
 #
 
